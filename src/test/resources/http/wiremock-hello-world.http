@@ -1,0 +1,4 @@
+### GET hello world example
+GET http://localhost:8080/any/url/will/work
+
+###
