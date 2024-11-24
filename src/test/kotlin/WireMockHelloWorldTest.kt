@@ -15,14 +15,14 @@ class WireMockHelloWorldTest {
 
   companion object {
     @RegisterExtension
-    val wireMockRule: WireMockExtension =
+    val wm: WireMockExtension =
       WireMockExtension.newInstance().options(wireMockConfig().dynamicPort()).build()
   }
 
   @Test
   fun `wiremock hello world example test`() {
     // Setup WireMock
-    wireMockRule.stubFor(
+    wm.stubFor(
       any(anyUrl())
         .willReturn(
           aResponse()
@@ -35,7 +35,7 @@ class WireMockHelloWorldTest {
 
     // Create the request to the mocked endpoint
     val request = HttpRequest.newBuilder()
-      .uri(URI.create("http://localhost:${wireMockRule.port}/hello-world"))
+      .uri(URI.create("http://localhost:${wm.port}/hello-world"))
       .GET()
       .build()
 
